@@ -15,7 +15,9 @@ class UserMapper {
             user.lastName,
             user.phone,
             user.designation,
-            user.createdAt!!
+            true,
+            user.createdAt!!,
+            user.roleId
         )
     }
 
@@ -27,7 +29,8 @@ class UserMapper {
             user.lastName,
             user.phone,
             user.designation,
-            authId
+            authId,
+            user.roleId
         )
     }
 }

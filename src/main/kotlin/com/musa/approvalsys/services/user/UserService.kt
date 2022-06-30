@@ -7,6 +7,7 @@ import com.musa.approvalsys.dto.user.UserDTO
 import com.musa.approvalsys.exceptions.AppSysErrorCodes
 import com.musa.approvalsys.exceptions.AppSysException
 import com.musa.approvalsys.mapper.UserMapper
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 
@@ -20,14 +21,22 @@ class UserService(
     override fun users(): List<UserDTO> {
         val users = mutableListOf<UserDTO>()
         userRepository.findAll().forEach {
-            users.add(userMapper.mapUser(it))
+            val userDTO = userMapper.mapUser(it)
+            val auth = authRepository.findByIdOrNull(it.authId)
+            userDTO.enable = auth!!.enable
+            users.add(userDTO)
         }
         return users
     }
 
     override fun user(id: Long): UserDTO {
         return userRepository.findById(id)
-            .map { userMapper.mapUser(it) }
+            .map {
+                val auth = authRepository.findByIdOrNull(it.authId)
+                val mapUser = userMapper.mapUser(it)
+                mapUser.enable = auth!!.enable
+                mapUser
+            }
             .orElseThrow {
                 AppSysException(
                     AppSysErrorCodes.USER_NOT_EXIST.code,
@@ -38,7 +47,12 @@ class UserService(
 
     override fun user(email: String): UserDTO {
         return userRepository.findByEmail(email)
-            .map { userMapper.mapUser(it) }
+            .map {
+                val userDTO = userMapper.mapUser(it)
+                val auth = authRepository.findByIdOrNull(it.authId)
+                userDTO.enable = auth!!.enable
+                userDTO
+            }
             .orElseThrow {
                 AppSysException(
                     AppSysErrorCodes.USER_NOT_EXIST.code,
@@ -48,6 +62,10 @@ class UserService(
     }
 
     override fun add(user: UserDTO): UserDTO {
+        val byEmail = userRepository.findByEmail(user.email)
+        if (byEmail.isPresent) {
+            throw AppSysException(AppSysErrorCodes.USER_ALREADY_EXIST.code, AppSysErrorCodes.USER_ALREADY_EXIST.message)
+        }
         val password = passwordEncoder.encode(user.tempPassword ?: "password1")
         val auth = Auth(user.id ?: 0, user.email, password, true, true)
         val authEntity = authRepository.save(auth)
