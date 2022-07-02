@@ -33,4 +33,13 @@ class UserMapper {
             user.roleId
         )
     }
+
+    fun mapUserForUpdate(dbUser: User, userDTO: UserDTO, ): User {
+        dbUser.firstName = userDTO.firstName
+        dbUser.lastName = userDTO.lastName
+        dbUser.designation = userDTO.designation
+        dbUser.phone = userDTO.phone
+        dbUser.roleId = userDTO.roleId
+        return dbUser
+    }
 }

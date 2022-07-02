@@ -7,6 +7,7 @@ import com.musa.approvalsys.dto.user.UserDTO
 import com.musa.approvalsys.exceptions.AppSysErrorCodes
 import com.musa.approvalsys.exceptions.AppSysException
 import com.musa.approvalsys.mapper.UserMapper
+import com.musa.approvalsys.services.MailExecutorServcie
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
@@ -16,7 +17,9 @@ class UserService(
     private val userRepository: UserRepository,
     private val authRepository: AuthRepository,
     private val userMapper: UserMapper,
-    private val passwordEncoder: PasswordEncoder
+    private val passwordEncoder: PasswordEncoder,
+    private val mailService: MailExecutorServcie
+
 ) : IUser {
     override fun users(): List<UserDTO> {
         val users = mutableListOf<UserDTO>()
@@ -70,11 +73,12 @@ class UserService(
         val auth = Auth(user.id ?: 0, user.email, password, true, true)
         val authEntity = authRepository.save(auth)
         val userEntity = userMapper.mapUser(user, authEntity.id)
+        mailService.sendWelcomeMail(user.email, user.firstName + (user.lastName ?: ""))
         return userMapper.mapUser(userRepository.save(userEntity))
     }
 
     override fun update(id: Long, user: UserDTO): UserDTO {
-        val userEntity = userRepository.findById(id).map { userMapper.mapUser(user, it.authId) }
+        val userEntity = userRepository.findById(id).map { userMapper.mapUserForUpdate(it, user) }
         return userMapper.mapUser(userRepository.save(userEntity.get()))
     }
 
