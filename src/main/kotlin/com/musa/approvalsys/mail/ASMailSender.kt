@@ -8,7 +8,7 @@ import org.springframework.scheduling.annotation.Async
 import org.springframework.stereotype.Service
 
 @Service
-class MailSender(
+class ASMailSender(
     private val javaMailSender: JavaMailSender,
     private val approvalProperties: ApprovalProperties
 ) {
