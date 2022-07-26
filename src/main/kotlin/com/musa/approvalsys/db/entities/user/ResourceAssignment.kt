@@ -1,4 +1,4 @@
-package com.musa.approvalsys.db.entities
+package com.musa.approvalsys.db.entities.user
 
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue

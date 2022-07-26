@@ -1,5 +1,6 @@
 package com.musa.approvalsys.security
 
+import com.musa.approvalsys.config.ApprovalProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration
@@ -11,10 +12,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 class WebSecurityConfig(
-    private val userDetailsService: UserDetailsService,
     private val jwtAuthenticationEntryPoint: JwtAuthenticationEntryPoint,
-    private val requestFilter: RequestFilter
-
+    private val requestFilter: RequestFilter,
+    private val approvalProperties: ApprovalProperties
 ) {
 
     @Bean
@@ -30,7 +30,7 @@ class WebSecurityConfig(
         return http.csrf().disable()
             .cors().disable()
             .authorizeRequests()
-            .antMatchers("/auth/login").permitAll()
+            .antMatchers(*approvalProperties.securityAllowedURL.toTypedArray()).permitAll()
             .anyRequest().authenticated().and()
             .formLogin().disable()
             .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)

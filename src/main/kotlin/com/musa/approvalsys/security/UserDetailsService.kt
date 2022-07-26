@@ -1,6 +1,6 @@
 package com.musa.approvalsys.security
 
-import com.musa.approvalsys.db.repositories.AuthRepository
+import com.musa.approvalsys.db.repositories.user.AuthRepository
 import org.springframework.security.core.userdetails.User
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService

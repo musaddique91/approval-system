@@ -1,6 +1,6 @@
-package com.musa.approvalsys.db.repositories
+package com.musa.approvalsys.db.repositories.user
 
-import com.musa.approvalsys.db.entities.User
+import com.musa.approvalsys.db.entities.user.User
 import org.springframework.data.jpa.repository.JpaRepository
 import java.util.Optional
 

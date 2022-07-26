@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <changeSet id="9" author="Musaddique">
+        <createTable tableName="approvers">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="user_ids" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="order" type="int"/>
+            <column name="step" type="varchar(500)"></column>
+            <column name="approval_flow_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_approvers_approval_flow_id"
+                             referencedTableName="approval_flow" referencedColumnNames="id"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

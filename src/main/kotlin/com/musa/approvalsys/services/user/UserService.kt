@@ -1,8 +1,8 @@
 package com.musa.approvalsys.services.user
 
-import com.musa.approvalsys.db.entities.Auth
-import com.musa.approvalsys.db.repositories.AuthRepository
-import com.musa.approvalsys.db.repositories.UserRepository
+import com.musa.approvalsys.db.entities.user.Auth
+import com.musa.approvalsys.db.repositories.user.AuthRepository
+import com.musa.approvalsys.db.repositories.user.UserRepository
 import com.musa.approvalsys.dto.user.UserDTO
 import com.musa.approvalsys.exceptions.AppSysErrorCodes
 import com.musa.approvalsys.exceptions.AppSysException

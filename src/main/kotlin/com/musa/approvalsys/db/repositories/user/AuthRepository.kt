@@ -1,6 +1,6 @@
-package com.musa.approvalsys.db.repositories
+package com.musa.approvalsys.db.repositories.user
 
-import com.musa.approvalsys.db.entities.Auth
+import com.musa.approvalsys.db.entities.user.Auth
 import org.springframework.data.jpa.repository.JpaRepository
 
 interface AuthRepository : JpaRepository<Auth, Long> {

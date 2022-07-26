@@ -9,5 +9,9 @@ enum class AppSysErrorCodes(val code: Int, val message: String) {
 
     // role errors
     ROLE_ALREADY_EXIST(201, "role already exist"),
-    ROLE_IS_IN_USE(202, "role is assign to 1 or more users")
+    ROLE_IS_IN_USE(202, "role is assign to 1 or more users"),
+
+    //work permit
+    FLOW_ALREADY_EXIST(300, "flow name already exist"),
+    INVALID_ID(301, "Invalid id")
 }

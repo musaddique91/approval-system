@@ -1,4 +1,4 @@
-package com.musa.approvalsys.db.entities
+package com.musa.approvalsys.db.entities.workpermit
 
 import com.quickget.backend.models.order.AuditableAttributes
 import javax.persistence.Entity
@@ -8,14 +8,9 @@ import javax.persistence.Id
 import javax.persistence.Table
 
 @Entity
-@Table(name = "users")
-class User(
+@Table(name = "approval_flow")
+class ApprovalFlow(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) var id: Long,
-    var email: String,
-    var firstName: String,
-    var lastName: String?,
-    var phone: String?,
-    var designation: String?,
-    var authId: Long,
-    var roleId: Long?
+    var name: String,
+    var workPermitCode: String
 ) : AuditableAttributes()

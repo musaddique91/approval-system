@@ -1,6 +1,6 @@
 package com.musa.approvalsys.mapper
 
-import com.musa.approvalsys.db.entities.Role
+import com.musa.approvalsys.db.entities.user.Role
 import com.musa.approvalsys.dto.user.RoleDTO
 import org.springframework.stereotype.Component
 

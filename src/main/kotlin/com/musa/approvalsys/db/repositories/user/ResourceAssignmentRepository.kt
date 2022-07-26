@@ -1,8 +1,7 @@
-package com.musa.approvalsys.db.repositories
+package com.musa.approvalsys.db.repositories.user
 
-import com.musa.approvalsys.db.entities.ResourceAssignment
+import com.musa.approvalsys.db.entities.user.ResourceAssignment
 import org.springframework.data.jpa.repository.JpaRepository
-import org.springframework.data.jpa.repository.Modifying
 
 interface ResourceAssignmentRepository : JpaRepository<ResourceAssignment, Long> {
     fun deleteByRoleId(roleId: Long): Long

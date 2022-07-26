@@ -1,12 +1,12 @@
 package com.musa.approvalsys.services.role
 
-import com.musa.approvalsys.db.entities.ResourceAssignment
-import com.musa.approvalsys.db.entities.Resources
-import com.musa.approvalsys.db.entities.Role
-import com.musa.approvalsys.db.repositories.ResourceAssignmentRepository
-import com.musa.approvalsys.db.repositories.ResourceRepository
-import com.musa.approvalsys.db.repositories.RoleRepository
-import com.musa.approvalsys.db.repositories.UserRepository
+import com.musa.approvalsys.db.entities.user.ResourceAssignment
+import com.musa.approvalsys.db.entities.user.Resources
+import com.musa.approvalsys.db.entities.user.Role
+import com.musa.approvalsys.db.repositories.user.ResourceAssignmentRepository
+import com.musa.approvalsys.db.repositories.user.ResourceRepository
+import com.musa.approvalsys.db.repositories.user.RoleRepository
+import com.musa.approvalsys.db.repositories.user.UserRepository
 import com.musa.approvalsys.dto.user.RoleDTO
 import com.musa.approvalsys.dto.user.RoleResourceDTO
 import com.musa.approvalsys.exceptions.AppSysErrorCodes

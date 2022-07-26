@@ -1,4 +1,4 @@
-package com.musa.approvalsys.db.entities
+package com.musa.approvalsys.db.entities.user
 
 import com.quickget.backend.models.order.AuditableAttributes
 import javax.persistence.Entity

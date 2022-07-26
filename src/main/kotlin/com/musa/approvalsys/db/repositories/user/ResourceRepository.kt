@@ -1,6 +1,6 @@
-package com.musa.approvalsys.db.repositories
+package com.musa.approvalsys.db.repositories.user
 
-import com.musa.approvalsys.db.entities.Resources
+import com.musa.approvalsys.db.entities.user.Resources
 import org.springframework.data.jpa.repository.JpaRepository
 
 interface ResourceRepository : JpaRepository<Resources, String>

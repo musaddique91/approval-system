@@ -11,4 +11,6 @@ class ApprovalProperties {
     var jwtTokenValidity: Long = 5L
     @Value("\${mail.from}")
     lateinit var mailFrom: String
+    @Value("\${security.allowed.urls}")
+    lateinit var securityAllowedURL: List<String>
 }
