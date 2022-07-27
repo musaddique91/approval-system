@@ -96,6 +96,11 @@
             <artifactId>mapstruct</artifactId>
             <version>${mapstruct.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-maven-allopen</artifactId>
+            <version>${kotlin.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -136,6 +141,12 @@
                         <goals>
                             <goal>compile</goal>
                         </goals>
+                        <configuration>
+                            <compilerPlugins>
+                                <plugin>spring</plugin>
+                                <plugin>jpa</plugin>
+                            </compilerPlugins>
+                        </configuration>
                     </execution>
                     <execution>
                         <id>test-compile</id>
@@ -145,6 +156,14 @@
                         </goals>
                     </execution>
                 </executions>
+
+                <dependencies>
+                    <dependency>
+                        <groupId>org.jetbrains.kotlin</groupId>
+                        <artifactId>kotlin-maven-allopen</artifactId>
+                        <version>${kotlin.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
 
             <plugin>
